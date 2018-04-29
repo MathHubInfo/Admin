@@ -3,6 +3,11 @@ from django.shortcuts import reverse
 
 from urllib.parse import quote
 
+def healthcheck(request):
+    """ Renders a simple healthcheck request """
+
+    return HttpResponse("ok")
+
 def authenticate(request):
     """ Renders a login view that respects the "X-Original-URI" header. """
     

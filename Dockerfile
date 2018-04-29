@@ -1,7 +1,7 @@
 FROM python:3-alpine
 
 # Install nginx and configuration
-RUN apk add --no-cache nginx \
+RUN apk add --no-cache nginx curl \
     && mkdir -p /run/nginx/
 ADD docker/django.conf /etc/nginx/django.conf
 
@@ -46,4 +46,5 @@ ENV DJANGO_DB_PORT ""
 # Volume and ports
 VOLUME /data/
 EXPOSE 80
+HEALTHCHECK --start-period=10s CMD curl -f http://localhost/ || exit 1
 ENTRYPOINT ["/entrypoint.sh"]
