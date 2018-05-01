@@ -55,7 +55,9 @@ ROOT_URLCONF = 'mhadmin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'mhadmin', 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# login url
+
+LOGIN_URL = "/admin/login"
+LOGIN_STAFF_URL = "/admin/login_staff"
+LOGOUT_URL = "/admin/logout"
+LOGIN_REDIRECT_URL = "/admin/"

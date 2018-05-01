@@ -1,0 +1,91 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+{% block coltype %}colMS{% endblock %}
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block userlinks %}
+    <a href="{% url 'logout' %}">{% trans 'Log out' %}</a>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+    <div class="module">
+        Welcome to the MathHub Admin Interface. 
+        You are logged in as <strong>{{ user }}</strong>
+        {% if is_staff %}
+            (a staff user).
+        {% else %}
+            (a normal user).
+        {% endif %}
+        <br />
+        You can logout by clicking the button on the top right. 
+    </div>
+
+    <div class="module">
+        <table>
+            <caption>
+                <strong class="section">Frontend</strong>
+                (works for everybody)
+            </caption>
+            <tr>
+                <th scope="row">
+                    <a href="/">Home Page</a>
+                </th>
+                <td></td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="module">
+        <table>
+            <caption>
+                <strong class="section">Backend</strong>
+                (works for logged in users only)
+            </caption>
+            <tr>
+                <th scope="row">
+                    <a href="/mmt/">MMT Webserver</a>
+                    
+                </th>
+                <td>manage MMT</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+    {% if is_staff %}
+    <div class="module">
+        <table>
+            <caption>
+                <strong class="section">Management</strong>
+                (works for staff only)
+            </caption>
+            <tr>
+                <th scope="row">
+                    <a href="/portainer/">Portainer Interface</a>
+                </th>
+                <td>manage Docker</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'admin:index' %}">Django Admin</a>
+                </th>
+                <td>manage Users</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

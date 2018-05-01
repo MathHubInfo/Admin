@@ -16,11 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import authenticate, check, healthcheck
+from .views import healthcheck
+from .views.nginx import check, check_staff, authenticate, authenticate_staff
+from .views.admin import index, login, login_staff, logout
+
+from .admin import admin_site
 
 urlpatterns = [
+    # healthcheck for docker image
     path('', healthcheck), 
-    path('admin/nginx/check', check), 
-    path('admin/nginx/authenticate', authenticate), 
-    path('admin/', admin.site.urls) 
+
+    path('admin/', index, name='index'), 
+    path('admin/login', login, name='login'), 
+    path('admin/login_staff', login_staff, name='login_staff'), 
+    path('admin/logout', logout, name='logout'), 
+
+    # nginx login backend
+    path('admin/nginx/check', check, name='check'), 
+    path('admin/nginx/check_staff', check_staff, name='check_staff'),
+    path('admin/nginx/authenticate', authenticate, name='authenticate'), 
+    path('admin/nginx/authenticate_staff', authenticate_staff, name='authenticate_staff'), 
+
+    # Django Admin
+    path('admin/django/', admin_site.urls) 
 ]
