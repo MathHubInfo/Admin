@@ -26,3 +26,7 @@ An automated build is available under [mathhub/admin](https://hub.docker.com/r/m
 ```
    docker run -e DJANGO_SECRET_KEY=totally_secret_key_here -p 8000:8000 -v data:/data/ mathhub/admin
 ```
+
+## License
+
+Licensed under AGPL 3.0

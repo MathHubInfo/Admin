@@ -12,6 +12,7 @@ ENV PYTHONPATH /app
 ADD mhadmin /app/mhadmin
 ADD manage.py /app/manage.py
 ADD requirements.txt /app/requirements.txt
+ADD LICENSE /app/LICENSE
 
 ENV DJANGO_SETTINGS_MODULE "mhadmin.docker_settings"
 
