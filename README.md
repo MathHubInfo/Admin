@@ -24,7 +24,7 @@ By default, it listens on port 80 and uses an sqlite database stored in a volume
 An automated build is available under [mathhub/admin](https://hub.docker.com/r/mathhub/admin) and can be run with a command like the following:
 
 ```
-   docker run -e DJANGO_SECRET_KEY=totally_secret_key_here -p 8000:8000 -v data:/data/ mathhub/admin
+   docker run -e DJANGO_SECRET_KEY=totally_secret_key_here -p 8000:80 -v data:/data/ mathhub/admin
 ```
 
 ## License
