@@ -25,7 +25,7 @@ WORKDIR /app/
 # Install python deps
 RUN mkdir -p /var/www/static \
     && pip install -r requirements.txt \
-    && pip install gunicorn==19.7
+    && pip install gunicorn==19.9.0
 
 ### ALL THE CONFIGURATION
 
