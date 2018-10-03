@@ -23,22 +23,19 @@ def index(request):
     context.update(admin_template_context(request))
     return render(request, 'mhadmin/index.html', context=context)
 
+class LoginView(views.LoginView):
+    template_name = 'admin/login.html'
+
 def login(request):
     """ Renders a login form for a normal user """
-    return views.login(
-        request,
-        template_name = 'admin/login.html',
-        extra_context=admin_template_context(request)
-    )
+    return LoginView.as_view(extra_context=admin_template_context(request))(request)
+
+class LoginStaffView(LoginView):
+    authentication_form = AdminAuthenticationForm
 
 def login_staff(request):
     """ Renders a login form for a staff user """
-    return views.login(
-        request,
-        template_name = 'admin/login.html',
-        authentication_form=AdminAuthenticationForm,
-        extra_context=admin_template_context(request)
-    )
+    return LoginStaffView.as_view(extra_context=admin_template_context(request))(request)
 
 @decorators.login_required
 def logout(request):
